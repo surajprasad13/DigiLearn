@@ -1,16 +1,30 @@
 import React from 'react';
-import {View, Dimensions, StyleSheet, Text, Image} from 'react-native';
+import {
+  View,
+  Dimensions,
+  StyleSheet,
+  Text,
+  Image,
+  Pressable,
+} from 'react-native';
 
 import {appStyles, fonts, Icon} from '../../../theme';
+import {useNavigation} from '@react-navigation/native';
 
 const {width: screenWidth} = Dimensions.get('window');
 
-const Completed = () => {
+const Completed = (): React.JSX.Element => {
+  const navigation = useNavigation();
+
   return (
-    <View style={[styles.card]}>
+    <Pressable
+      style={[styles.card]}
+      onPress={() => {
+        navigation.navigate('CourseDetail');
+      }}>
       <Image
         source={{
-          uri: 'https://source.unsplash.com/400x400?courses',
+          uri: 'https://picsum.photos/200/300',
         }}
         style={{
           width: 58,
@@ -39,7 +53,7 @@ const Completed = () => {
           <Icon.Octicons name="check-circle-fill" color="#13B87E" />
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

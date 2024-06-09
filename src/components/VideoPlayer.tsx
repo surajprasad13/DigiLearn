@@ -1,21 +1,24 @@
 import React, {PropsWithChildren, useRef} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 import Video, {VideoRef} from 'react-native-video';
 import {appStyles, colors, Icon} from '../theme';
 import {ProgressBar} from 'react-native-paper';
 
-type VideoPlayerProp = PropsWithChildren<{}>;
+type VideoPlayerProp = PropsWithChildren<{
+  containerStyle?: ViewStyle;
+}>;
 
-const VideoPlayer = ({}: VideoPlayerProp): React.JSX.Element => {
+const VideoPlayer = ({containerStyle}: VideoPlayerProp): React.JSX.Element => {
   const videoRef = useRef<VideoRef>(null);
 
   return (
-    <View style={{}}>
+    <View style={[containerStyle, {}]}>
       <Video
         source={{
           uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
         }}
         ref={videoRef}
+        paused
         style={styles.backgroundVideo}
       />
 
@@ -39,7 +42,7 @@ const VideoPlayer = ({}: VideoPlayerProp): React.JSX.Element => {
           <Text>10:43</Text>
         </View>
 
-        <View style={[appStyles.rowBetween, {gap: 15}]}>
+        <View style={[appStyles.rowBetween, {gap: 15, paddingHorizontal: 15}]}>
           <Icon.MaterialIcon name="closed-caption" size={20} />
           <Icon.AntDesign name="sound" size={20} />
           <Icon.FontAwesome5 name="expand" size={20} />

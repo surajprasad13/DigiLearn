@@ -13,7 +13,7 @@ const UpComing = ({locked}: UpComingProp): React.JSX.Element => {
     <View style={[styles.card, {opacity: locked ? 0.5 : 1}]}>
       <Image
         source={{
-          uri: 'https://source.unsplash.com/400x400?courses',
+          uri: 'https://picsum.photos/200/300',
         }}
         style={{
           width: 73,
